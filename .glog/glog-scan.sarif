@@ -1,0 +1,494 @@
+{
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "Glog.AI",
+          "organization": "Glog.AI",
+          "fullName": "Glog, Making software more secure",
+          "version": "1.0.0",
+          "semanticVersion": "1.0.0",
+          "informationUri": "https://www.glog.ai",
+          "rules": [
+            {
+              "id": "glog-87397a06-e6e4-4236-8487-5a7a786c04e7",
+              "help": {
+                "text": "",
+                "markdown": "### Description of \"Unsecured URL\" Vulnerability\n\nAn \"Unsecured URL\" vulnerability occurs when an application uses HTTP instead of HTTPS to communicate with external resources. This can lead to data being transmitted in plaintext, making it susceptible to interception and tampering by attackers. In C#, this vulnerability can arise when using classes like `HttpClient` or `WebRequest` to make HTTP requests without ensuring the use of HTTPS.\n\n### General Mitigation Advice\n\n1. **Use HTTPS**: Always use HTTPS instead of HTTP to ensure that data is encrypted during transmission.\n2. **Validate Certificates**: Ensure that SSL/TLS certificates are valid and properly configured.\n3. **Security Headers**: Implement security headers like `Strict-Transport-Security` to enforce secure connections.\n4. **Regular Audits**: Regularly audit your codebase for any unsecured URLs and update them to use HTTPS.\n\n### Source Code Fix Recommendation\n\nBelow is an example of how to fix an unsecured URL vulnerability in C#:\n\n```csharp\nusing System;\nusing System.Net.Http;\nusing System.Threading.Tasks;\n\nclass Program\n{\n    static async Task Main()\n    {\n        // Original vulnerable code\n        // string url = \"http://01.org\";\n\n        // Fixed code using HTTPS\n        string url = \"https://01.org\";\n\n        using (HttpClient client = new HttpClient())\n        {\n            try\n            {\n                HttpResponseMessage response = await client.GetAsync(url);\n                response.EnsureSuccessStatusCode();\n                string responseBody = await response.Content.ReadAsStringAsync();\n                Console.WriteLine(responseBody);\n            }\n            catch (HttpRequestException e)\n            {\n                Console.WriteLine($\"Request error: {e.Message}\");\n            }\n        }\n    }\n}\n```\n\n### Library Dependencies\n\nTo execute the above code, ensure you have the following library dependencies:\n\n- .NET Core or .NET Framework (for `HttpClient` class)\n- System.Net.Http (included in .NET Core and .NET Framework)\n\n### OWASP Resources\n\n- [OWASP Transport Layer Protection Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Protection_Cheat_Sheet.html)\n- [OWASP Secure Headers Project](https://owasp.org/www-project-secure-headers/)\n\n### Common Weakness Enumeration (CWE)\n\n- [CWE-319: Cleartext Transmission of Sensitive Information](https://cwe.mitre.org/data/definitions/319.html)"
+              },
+              "properties": {
+                "tags": [
+                  "DS137138"
+                ]
+              }
+            },
+            {
+              "id": "glog-cf935011-d9c3-442a-b7db-8599a48a1db5",
+              "help": {
+                "text": "",
+                "markdown": "### Description of \"Unsecured URL\" Vulnerability\n\nAn \"Unsecured URL\" vulnerability occurs when an application uses HTTP instead of HTTPS to communicate with external resources. This can lead to data being transmitted in plaintext, making it susceptible to interception and tampering by attackers. In C#, this vulnerability can arise when using classes like `HttpClient` or `WebRequest` to make HTTP requests without ensuring the use of HTTPS.\n\n### General Mitigation Advice\n\n1. **Use HTTPS**: Always use HTTPS instead of HTTP to ensure that data is encrypted during transmission.\n2. **Validate Certificates**: Ensure that SSL/TLS certificates are valid and properly configured.\n3. **Security Headers**: Implement security headers like `Strict-Transport-Security` to enforce secure connections.\n4. **Regular Audits**: Regularly audit your codebase for any unsecured URLs and update them to use HTTPS.\n\n### Source Code Fix Recommendation\n\nBelow is an example of how to fix an unsecured URL vulnerability in C#:\n\n```csharp\nusing System;\nusing System.Net.Http;\nusing System.Threading.Tasks;\n\nclass Program\n{\n    static async Task Main()\n    {\n        // Original vulnerable code\n        // string url = \"http://01.org\";\n\n        // Fixed code using HTTPS\n        string url = \"https://01.org\";\n\n        using (HttpClient client = new HttpClient())\n        {\n            try\n            {\n                HttpResponseMessage response = await client.GetAsync(url);\n                response.EnsureSuccessStatusCode();\n                string responseBody = await response.Content.ReadAsStringAsync();\n                Console.WriteLine(responseBody);\n            }\n            catch (HttpRequestException e)\n            {\n                Console.WriteLine($\"Request error: {e.Message}\");\n            }\n        }\n    }\n}\n```\n\n### Library Dependencies\n\nTo execute the above code, ensure you have the following library dependencies:\n\n- .NET Core or .NET Framework (for `HttpClient` class)\n- System.Net.Http (included in .NET Core and .NET Framework)\n\n### OWASP Resources\n\n- [OWASP Transport Layer Protection Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Protection_Cheat_Sheet.html)\n- [OWASP Secure Headers Project](https://owasp.org/www-project-secure-headers/)\n\n### Common Weakness Enumeration (CWE)\n\n- [CWE-319: Cleartext Transmission of Sensitive Information](https://cwe.mitre.org/data/definitions/319.html)"
+              },
+              "properties": {
+                "tags": [
+                  "DS137138"
+                ]
+              }
+            },
+            {
+              "id": "glog-63d046f1-6fc2-4f04-aadd-1a00d64bf76a",
+              "help": {
+                "text": "",
+                "markdown": "### Description\n\nThe \"Unsecured URL\" vulnerability occurs when an application uses HTTP instead of HTTPS to communicate with external services. This can lead to data being transmitted in plaintext, making it susceptible to interception and tampering by attackers. In C#, this vulnerability can manifest when using classes like `HttpClient` or `WebRequest` to make HTTP requests without ensuring the use of HTTPS.\n\n### General Mitigation Advice\n\n1. **Use HTTPS**: Always use HTTPS instead of HTTP to ensure that data is encrypted during transmission.\n2. **Validate Certificates**: Ensure that SSL/TLS certificates are valid and properly configured.\n3. **Security Headers**: Implement security headers like `Strict-Transport-Security` to enforce secure connections.\n4. **Regular Audits**: Regularly audit your codebase for any unsecured URLs and update them to use HTTPS.\n\n### Source Code Fix Recommendation\n\nBelow is an example of how to fix an unsecured URL vulnerability in C# by using HTTPS:\n\n```csharp\nusing System;\nusing System.Net.Http;\nusing System.Threading.Tasks;\n\nclass Program\n{\n    static async Task Main()\n    {\n        // Original insecure URL\n        // string url = \"http://www.google.com\";\n\n        // Secure URL using HTTPS\n        string url = \"https://www.google.com\";\n\n        using (HttpClient client = new HttpClient())\n        {\n            try\n            {\n                HttpResponseMessage response = await client.GetAsync(url);\n                response.EnsureSuccessStatusCode();\n                string responseBody = await response.Content.ReadAsStringAsync();\n                Console.WriteLine(responseBody);\n            }\n            catch (HttpRequestException e)\n            {\n                Console.WriteLine($\"Request error: {e.Message}\");\n            }\n        }\n    }\n}\n```\n\n### Library Dependencies\n\n- `System.Net.Http`: This library is required to use `HttpClient` for making HTTP requests.\n\n### OWASP Resources\n\n- [OWASP Transport Layer Protection Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Protection_Cheat_Sheet.html)\n- [OWASP Secure Headers Project](https://owasp.org/www-project-secure-headers/)\n\n### Common Weakness Enumeration (CWE)\n\n- [CWE-319: Cleartext Transmission of Sensitive Information](https://cwe.mitre.org/data/definitions/319.html)"
+              },
+              "properties": {
+                "tags": [
+                  "DS137138"
+                ]
+              }
+            },
+            {
+              "id": "glog-3598a28e-6fcd-4b5d-9f40-ed3e09dc39bd",
+              "help": {
+                "text": "",
+                "markdown": "### Description\n\nThe \"Unsecured URL\" vulnerability occurs when an application uses URLs that are not secured with HTTPS, potentially exposing sensitive data to interception or tampering by attackers. In C#, this can happen when making HTTP requests using libraries like `HttpClient` without ensuring the URL is secure. This vulnerability can lead to man-in-the-middle attacks, data breaches, and other security issues.\n\n### General Mitigation Advice\n\n1. **Use HTTPS**: Always use HTTPS URLs to ensure data is encrypted during transmission.\n2. **Validate Certificates**: Ensure that SSL/TLS certificates are valid and properly configured.\n3. **Use Security Libraries**: Utilize libraries that enforce secure connections and validate certificates.\n4. **Regular Audits**: Regularly audit your codebase for unsecured URLs and update them to use HTTPS.\n\n### Source Code Fix Recommendation\n\nBelow is an example of how to fix an unsecured URL vulnerability in C# by using HTTPS:\n\n```csharp\nusing System;\nusing System.Net.Http;\nusing System.Threading.Tasks;\n\nclass Program\n{\n    static async Task Main()\n    {\n        // Original unsecured URL\n        // string url = \"http://google.com\";\n\n        // Secure URL\n        string url = \"https://google.com\";\n\n        using (HttpClient client = new HttpClient())\n        {\n            try\n            {\n                HttpResponseMessage response = await client.GetAsync(url);\n                response.EnsureSuccessStatusCode();\n                string responseBody = await response.Content.ReadAsStringAsync();\n                Console.WriteLine(responseBody);\n            }\n            catch (HttpRequestException e)\n            {\n                Console.WriteLine($\"Request error: {e.Message}\");\n            }\n        }\n    }\n}\n```\n\n### Library Dependencies\n\nTo execute the above code, ensure you have the following library:\n\n- `System.Net.Http`: This is part of the .NET framework and does not require additional installation for most projects.\n\n### OWASP Resources\n\n- [OWASP Transport Layer Protection Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Protection_Cheat_Sheet.html)\n- [OWASP Secure Coding Practices - Quick Reference Guide](https://owasp.org/www-project-secure-coding-practices-quick-reference-guide/)\n\n### Common Weakness Enumeration (CWE)\n\n- [CWE-319: Cleartext Transmission of Sensitive Information](https://cwe.mitre.org/data/definitions/319.html)"
+              },
+              "properties": {
+                "tags": [
+                  "DS137138"
+                ]
+              }
+            },
+            {
+              "id": "glog-2a4ddf67-03b7-4d34-8fcf-15e6839a3e5a",
+              "help": {
+                "text": "",
+                "markdown": "### Description of \"Unsecured URL\" Vulnerability\n\nAn \"Unsecured URL\" vulnerability occurs when an application uses HTTP instead of HTTPS to communicate with external resources. This can lead to data being transmitted in plaintext, making it susceptible to interception and tampering by attackers. In C#, this vulnerability can arise when using classes like `HttpClient` or `WebRequest` to make HTTP requests without ensuring the use of HTTPS.\n\n### General Mitigation Advice\n\n1. **Use HTTPS**: Always use HTTPS instead of HTTP to ensure that data is encrypted during transmission.\n2. **Validate Certificates**: Ensure that SSL/TLS certificates are valid and properly configured.\n3. **Security Headers**: Implement security headers like `Strict-Transport-Security` to enforce secure connections.\n4. **Regular Audits**: Regularly audit your codebase for any unsecured URLs and update them to use HTTPS.\n\n### Source Code Fix Recommendation\n\nBelow is an example of how to fix an unsecured URL vulnerability in C#:\n\n```csharp\nusing System;\nusing System.Net.Http;\nusing System.Threading.Tasks;\n\nclass Program\n{\n    static async Task Main()\n    {\n        // Original vulnerable code\n        // string url = \"http://01.org\";\n\n        // Fixed code using HTTPS\n        string url = \"https://01.org\";\n\n        using (HttpClient client = new HttpClient())\n        {\n            try\n            {\n                HttpResponseMessage response = await client.GetAsync(url);\n                response.EnsureSuccessStatusCode();\n                string responseBody = await response.Content.ReadAsStringAsync();\n                Console.WriteLine(responseBody);\n            }\n            catch (HttpRequestException e)\n            {\n                Console.WriteLine($\"Request error: {e.Message}\");\n            }\n        }\n    }\n}\n```\n\n### Library Dependencies\n\nTo execute the above code, ensure you have the following library dependencies:\n\n- .NET Core or .NET Framework (for `HttpClient` class)\n- System.Net.Http (included in .NET Core and .NET Framework)\n\n### OWASP Resources\n\n- [OWASP Transport Layer Protection Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Protection_Cheat_Sheet.html)\n- [OWASP Secure Headers Project](https://owasp.org/www-project-secure-headers/)\n\n### Common Weakness Enumeration (CWE)\n\n- [CWE-319: Cleartext Transmission of Sensitive Information](https://cwe.mitre.org/data/definitions/319.html)"
+              },
+              "properties": {
+                "tags": [
+                  "DS137138"
+                ]
+              }
+            },
+            {
+              "id": "glog-2c649af3-3ff5-46e8-87de-202ac934c799",
+              "help": {
+                "text": "",
+                "markdown": "### Description\n\nThe \"Unsecured URL\" vulnerability occurs when an application uses HTTP instead of HTTPS to communicate with external services. This can lead to data being transmitted in plaintext, making it susceptible to interception and tampering by attackers. In C#, this vulnerability can manifest when using classes like `HttpClient` or `WebRequest` to make HTTP requests without ensuring the use of HTTPS.\n\n### General Mitigation Advice\n\n1. **Use HTTPS**: Always use HTTPS instead of HTTP to ensure that data is encrypted during transmission.\n2. **Validate Certificates**: Ensure that SSL/TLS certificates are valid and properly configured.\n3. **Security Headers**: Implement security headers like `Strict-Transport-Security` to enforce secure connections.\n4. **Regular Audits**: Regularly audit your codebase for any unsecured URLs and update them to use HTTPS.\n\n### Source Code Fix Recommendation\n\nBelow is an example of how to fix an unsecured URL vulnerability in C# by using HTTPS:\n\n```csharp\nusing System;\nusing System.Net.Http;\nusing System.Threading.Tasks;\n\nclass Program\n{\n    static async Task Main()\n    {\n        // Original insecure URL\n        // string url = \"http://www.google.com\";\n\n        // Secure URL using HTTPS\n        string url = \"https://www.google.com\";\n\n        using (HttpClient client = new HttpClient())\n        {\n            try\n            {\n                HttpResponseMessage response = await client.GetAsync(url);\n                response.EnsureSuccessStatusCode();\n                string responseBody = await response.Content.ReadAsStringAsync();\n                Console.WriteLine(responseBody);\n            }\n            catch (HttpRequestException e)\n            {\n                Console.WriteLine($\"Request error: {e.Message}\");\n            }\n        }\n    }\n}\n```\n\n### Library Dependencies\n\n- `System.Net.Http`: This library is required to use `HttpClient` for making HTTP requests.\n\n### OWASP Resources\n\n- [OWASP Transport Layer Protection Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Protection_Cheat_Sheet.html)\n- [OWASP Secure Headers Project](https://owasp.org/www-project-secure-headers/)\n\n### Common Weakness Enumeration (CWE)\n\n- [CWE-319: Cleartext Transmission of Sensitive Information](https://cwe.mitre.org/data/definitions/319.html)"
+              },
+              "properties": {
+                "tags": [
+                  "DS137138"
+                ]
+              }
+            }
+          ],
+          "language": "en-US",
+          "contents": [
+            "localizedData",
+            "nonLocalizedData"
+          ],
+          "isComprehensive": false
+        }
+      },
+      "language": "en-US",
+      "results": [
+        {
+          "ruleId": "glog-87397a06-e6e4-4236-8487-5a7a786c04e7",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Insecure URL"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/Extensions/BCI/UI/en/Scanners/Properties/AssemblyInfo.cs"
+                },
+                "region": {
+                  "startLine": 11,
+                  "startColumn": 28,
+                  "endLine": 11,
+                  "endColumn": 41,
+                  "charOffset": 474,
+                  "charLength": 13,
+                  "snippet": {
+                    "text": "http://01.org",
+                    "rendered": {
+                      "text": "http://01.org",
+                      "markdown": "`http://01.org`"
+                    }
+                  },
+                  "sourceLanguage": "csharp"
+                }
+              }
+            }
+          ],
+          "fixes": [
+            {
+              "description": {
+                "text": "An HTTP-based URL without TLS was detected."
+              },
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "src/Extensions/BCI/UI/en/Scanners/Properties/AssemblyInfo.cs"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "charOffset": 474,
+                        "charLength": 13
+                      },
+                      "insertedContent": {
+                        "text": "https://01.org"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "DevSkimSeverity": "Moderate",
+            "DevSkimConfidence": "High",
+            "tags": [
+              "ThreatModel.Integration.HTTP"
+            ]
+          }
+        },
+        {
+          "ruleId": "glog-cf935011-d9c3-442a-b7db-8599a48a1db5",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Insecure URL"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/Libraries/ACATExtension/UI/AboutBoxForm.Designer.cs"
+                },
+                "region": {
+                  "startLine": 111,
+                  "startColumn": 34,
+                  "endLine": 111,
+                  "endColumn": 47,
+                  "charOffset": 6635,
+                  "charLength": 13,
+                  "snippet": {
+                    "text": "http://01.org",
+                    "rendered": {
+                      "text": "http://01.org",
+                      "markdown": "`http://01.org`"
+                    }
+                  },
+                  "sourceLanguage": "csharp"
+                }
+              }
+            }
+          ],
+          "fixes": [
+            {
+              "description": {
+                "text": "An HTTP-based URL without TLS was detected."
+              },
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "src/Libraries/ACATExtension/UI/AboutBoxForm.Designer.cs"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "charOffset": 6635,
+                        "charLength": 13
+                      },
+                      "insertedContent": {
+                        "text": "https://01.org"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "DevSkimSeverity": "Moderate",
+            "DevSkimConfidence": "High",
+            "tags": [
+              "ThreatModel.Integration.HTTP"
+            ]
+          }
+        },
+        {
+          "ruleId": "glog-63d046f1-6fc2-4f04-aadd-1a00d64bf76a",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Insecure URL"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/Libraries/ACATCore/Utility/WebSearch.cs"
+                },
+                "region": {
+                  "startLine": 37,
+                  "startColumn": 13,
+                  "endLine": 37,
+                  "endColumn": 34,
+                  "charOffset": 1188,
+                  "charLength": 21,
+                  "snippet": {
+                    "text": "http://www.google.com",
+                    "rendered": {
+                      "text": "http://www.google.com",
+                      "markdown": "`http://www.google.com`"
+                    }
+                  },
+                  "sourceLanguage": "csharp"
+                }
+              }
+            }
+          ],
+          "fixes": [
+            {
+              "description": {
+                "text": "An HTTP-based URL without TLS was detected."
+              },
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "src/Libraries/ACATCore/Utility/WebSearch.cs"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "charOffset": 1188,
+                        "charLength": 21
+                      },
+                      "insertedContent": {
+                        "text": "https://www.google.com"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "DevSkimSeverity": "Moderate",
+            "DevSkimConfidence": "High",
+            "tags": [
+              "ThreatModel.Integration.HTTP"
+            ]
+          }
+        },
+        {
+          "ruleId": "glog-3598a28e-6fcd-4b5d-9f40-ed3e09dc39bd",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Insecure URL"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/Libraries/ACATCore/Utility/WebSearch.cs"
+                },
+                "region": {
+                  "startLine": 31,
+                  "startColumn": 42,
+                  "endLine": 31,
+                  "endColumn": 59,
+                  "charOffset": 1018,
+                  "charLength": 17,
+                  "snippet": {
+                    "text": "http://google.com",
+                    "rendered": {
+                      "text": "http://google.com",
+                      "markdown": "`http://google.com`"
+                    }
+                  },
+                  "sourceLanguage": "csharp"
+                }
+              }
+            }
+          ],
+          "fixes": [
+            {
+              "description": {
+                "text": "An HTTP-based URL without TLS was detected."
+              },
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "src/Libraries/ACATCore/Utility/WebSearch.cs"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "charOffset": 1018,
+                        "charLength": 17
+                      },
+                      "insertedContent": {
+                        "text": "https://google.com"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "DevSkimSeverity": "Moderate",
+            "DevSkimConfidence": "High",
+            "tags": [
+              "ThreatModel.Integration.HTTP"
+            ]
+          }
+        },
+        {
+          "ruleId": "glog-2a4ddf67-03b7-4d34-8fcf-15e6839a3e5a",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Insecure URL"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/Extensions/Default/UI/Dialogs/Properties/AssemblyInfo.cs"
+                },
+                "region": {
+                  "startLine": 10,
+                  "startColumn": 28,
+                  "endLine": 10,
+                  "endColumn": 41,
+                  "charOffset": 434,
+                  "charLength": 13,
+                  "snippet": {
+                    "text": "http://01.org",
+                    "rendered": {
+                      "text": "http://01.org",
+                      "markdown": "`http://01.org`"
+                    }
+                  },
+                  "sourceLanguage": "csharp"
+                }
+              }
+            }
+          ],
+          "fixes": [
+            {
+              "description": {
+                "text": "An HTTP-based URL without TLS was detected."
+              },
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "src/Extensions/Default/UI/Dialogs/Properties/AssemblyInfo.cs"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "charOffset": 434,
+                        "charLength": 13
+                      },
+                      "insertedContent": {
+                        "text": "https://01.org"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "DevSkimSeverity": "Moderate",
+            "DevSkimConfidence": "High",
+            "tags": [
+              "ThreatModel.Integration.HTTP"
+            ]
+          }
+        },
+        {
+          "ruleId": "glog-2c649af3-3ff5-46e8-87de-202ac934c799",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Insecure URL"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/Libraries/ACATCore/Utility/WebSearch.cs"
+                },
+                "region": {
+                  "startLine": 26,
+                  "startColumn": 47,
+                  "endLine": 26,
+                  "endColumn": 68,
+                  "charOffset": 828,
+                  "charLength": 21,
+                  "snippet": {
+                    "text": "http://www.google.com",
+                    "rendered": {
+                      "text": "http://www.google.com",
+                      "markdown": "`http://www.google.com`"
+                    }
+                  },
+                  "sourceLanguage": "csharp"
+                }
+              }
+            }
+          ],
+          "fixes": [
+            {
+              "description": {
+                "text": "An HTTP-based URL without TLS was detected."
+              },
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "src/Libraries/ACATCore/Utility/WebSearch.cs"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "charOffset": 828,
+                        "charLength": 21
+                      },
+                      "insertedContent": {
+                        "text": "https://www.google.com"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "DevSkimSeverity": "Moderate",
+            "DevSkimConfidence": "High",
+            "tags": [
+              "ThreatModel.Integration.HTTP"
+            ]
+          }
+        }
+      ],
+      "newlineSequences": [
+        "\r\n",
+        "\n"
+      ]
+    }
+  ]
+}
